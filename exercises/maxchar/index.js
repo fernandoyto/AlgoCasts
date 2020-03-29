@@ -7,6 +7,8 @@
 
 function maxChar(str) {
     const obj = {}
+    let max = 0;
+    let maxChar = '';
     for (let char of str) {
         if (obj[char] === undefined) {
             obj[char] = 1;
@@ -14,7 +16,14 @@ function maxChar(str) {
             obj[char]++;
         }
     }
-    return Object.keys(obj).reduce((max, current) => obj[current] > max ? obj[current] : max);
+
+    for (key in obj) {
+        if (obj[key] > max) {
+            max = obj[key];
+            maxChar = key;
+        }
+    }
+    return maxChar;
 }
 
 maxChar('aabbbcdeee')
